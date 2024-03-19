@@ -155,11 +155,24 @@ console.log(letters);
 console.log(...str);
 
 // Using spread operator to pass arguement to a function
-const ingredients = [
-  prompt("Let's make pasta! Ingredient 1?"),
-  prompt('Ingredient 2?'),
-  prompt('Ingredient 3?'),
-];
+// Real world examples
+// const ingredients = [
+//   prompt("Let's make pasta! Ingredient 1?"),
+//   prompt('Ingredient 2?'),
+//   prompt('Ingredient 3?'),
+// ];
+// console.log(ingredients);
+// restaurant.orderPasta(...ingredients);
 
-console.log(ingredients);
-restaurant.orderPasta(...ingredients);
+// Objects
+const newRestaurant = {
+  foundeIn: 1998,
+  ...restaurant,
+  founder: 'Guiseppe',
+};
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Ristorante Roma';
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
