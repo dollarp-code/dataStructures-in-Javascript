@@ -127,7 +127,7 @@ console.log(o, c);
 // const [p = 1, q = 1, r = 1] = [8, 9];
 // console.log(p, q, r);
 
-// Spread Oerator - takes all the element from the array and doesnt create new variables, we can only use it in places where values are seperated with a comma
+// Spread Operator - takes all the element from the array and doesn't create new variables, we can only use it in places where values are seperated with a comma
 
 const arr = [7, 8, 9];
 const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
@@ -164,7 +164,7 @@ console.log(...str);
 // console.log(ingredients);
 // restaurant.orderPasta(...ingredients);
 
-// Objects
+// Objects with spread operators
 const newRestaurant = {
   foundeIn: 1998,
   ...restaurant,
