@@ -214,3 +214,35 @@ add(...x);
 
 restaurant.orderPizza('mushrooms', 'onions', 'olives', 'spinach');
 restaurant.orderPizza('mushrooms');
+
+// SHORT CIRCUITING (&& AND ||)
+// The OR OPERATOR can use ANY data type, return ANY data type, and do short-circuiting
+
+console.log('----- OR -----');
+
+console.log(3 || 'jonas'); // returns 3 because it is the first truthy value and it's short-circuited
+console.log('' || 'jonas'); // returs jonas because it is a truthy value
+console.log(true || 0); // returs true because it is a truthy value
+console.log(undefined || null); // returns null  because all the operands are falsy values, it returns the last operands
+console.log(undefined || 0 || '' || 'Hello' || 23 || null); // returns Hello because it is the first truthy value
+
+restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('----- AND -----');
+// returns the first falsy value or the last values if all of them are truthy
+
+console.log(0 && 'jonas');
+console.log(7 && 'jonas');
+console.log('Hello' && 23 && null && 'jonas');
+
+// practical examples
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
