@@ -381,3 +381,15 @@ printGoals(...game.scored);
 // task 7
 team1 < team2 && console.log('Team1 is more likely to win');
 team1 > team2 && console.log('Team1 is more likely to win');
+
+// THE for-of loop
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (let i = 0; i < menu.length; i++) {
+  console.log(`${i + 1}: ${menu[i]}`);
+}
+
+for (const item of menu) console.log(item);
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
