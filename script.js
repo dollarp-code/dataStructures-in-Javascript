@@ -226,12 +226,16 @@ console.log(true || 0); // returs true because it is a truthy value
 console.log(undefined || null); // returns null  because all the operands are falsy values, it returns the last operands
 console.log(undefined || 0 || '' || 'Hello' || 23 || null); // returns Hello because it is the first truthy value
 
-restaurant.numGuests = 23;
-const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
-console.log(guests1);
+restaurant.numGuests = 0;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests1);
 
 const guests2 = restaurant.numGuests || 10;
 console.log(guests2);
+
+// Nullish coalescing operator: Includes (Null , Undefined) and NOT (zero and "")
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
 
 console.log('----- AND -----');
 // returns the first falsy value or the last values if all of them are truthy
