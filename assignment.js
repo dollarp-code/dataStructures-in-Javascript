@@ -445,8 +445,8 @@ const books = [
 // let pageSum = 0;
 // for (const book of books) {
 //   pageSum += book.pages;
-//   console.log(pageSum);
 // }
+//   console.log(pageSum);
 
 // // 8.2
 // // Below is the allAuthors variable which stores an empty array. Use the for-of loop to fill allAuthors with the authors of each book from the books array.

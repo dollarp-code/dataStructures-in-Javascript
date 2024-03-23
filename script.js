@@ -383,70 +383,120 @@ printGoals(...game.scored);
 team1 < team2 && console.log('Team1 is more likely to win');
 team1 > team2 && console.log('Team1 is more likely to win');
 
-// THE for-of loop
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-
-console.log('----for-of-loop----');
-for (const item of menu) console.log(item);
-for (const [i, el] of menu.entries()) {
-  console.log(`${i + 1}: ${el}`);
-  // console.log(i, el);
-  // console.log([...menu.entries()]);
+/*Coding Challenge #2
+Let's continue with our football betting app! Keep using the 'game' variable from
+before.
+Your tasks:
+1. Loop over the game.scored array and print each player name to the console,
+along with the goal number (Example: "Goal 1: Lewandowski")
+2. Use a loop to calculate the average odd and log it to the console (We already
+studied how to calculate averages, you can go check if you don't remember)
+3. Print the 3 odds to the console, but in a nice formatted way, exactly like this:
+Odd of victory Bayern Munich: 1.33
+Odd of draw: 3.25
+Odd of victory Borrussia Dortmund: 6.5
+Get the team names directly from the game object, don't hardcode them
+(except for "draw"). Hint: Note how the odds and the game objects have the
+same property names �
+4. Bonus: Create an object called 'scorers' which contains the names of the
+players who scored as properties, and the number of goals as the value. In this
+game, it will look like this:
+{
+ Gnarby: 1,
+ Hummels: 1,
+ Lewandowski: 2
 }
-console.log('----for-loop----');
-for (let i = 0; i < menu.length; i++) {
-  console.log(`${i + 1}: ${menu[i]}`);
-}
+GOOD LUCK  */
 
-// Optional Chaining
-if (restaurant.openingHours && restaurant.openingHours.mon)
-  console.log(restaurant.openingHours.mon.open);
-
-// with optional chaining ES2020
-console.log(restaurant.openingHours.mon?.open);
-console.log(restaurant.openingHours?.mon?.open);
-
-// Example
-const days = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sun'];
-
-for (const day of days) {
-  // console.log(day);
-  const open = restaurant.openingHours[day]?.open ?? 'closed';
-  console.log(`On ${day}, we open at ${open}`);
+// task 1
+for (const [goal, player] of game.scored.entries()) {
+  console.log(`Goal ${goal + 1}: ${player}`);
 }
 
-// Optional chaining on method
-console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
-console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
+// taks 2
+const odds = Object.values(game.odds);
+let average = 0;
+for (const odd of odds) average += odd;
+average /= odds.length;
+console.log(average);
 
-// Optional chaining on arrays
-
-const users = [{ name: 'jonas', email: 'hi@gmail.com' }];
-// const users = [];
-
-console.log(users[0]?.name ?? 'User array is empty');
-
-// Looping objects - Object keys, value and entries
-
-// properties Names
-const properties = Object.keys(openingHours);
-console.log(properties);
-
-let openStr = `We are open on ${properties.length} days: `;
-
-for (const day of properties) {
-  openStr += `${day}, `;
+// task 3
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+  console.log(`Odds of ${teamStr} ${odd}`);
 }
-console.log(openStr);
 
-// Property values
-const values = Object.values(openingHours);
-console.log(values);
-
-// Entire objects
-const entries = Object.entries(openingHours);
-console.log(entries);
-
-for (const [key, { open, close }] of entries) {
-  console.log(`On ${key} we open at ${open} and close at ${close}`);
+// bonus
+const scorers = {};
+for (const player of game.scored) {
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 }
+console.log(scorers);
+
+// // THE for-of loop
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+// console.log('----for-of-loop----');
+// for (const item of menu) console.log(item);
+// for (const [i, el] of menu.entries()) {
+//   console.log(`${i + 1}: ${el}`);
+//   // console.log(i, el);
+//   // console.log([...menu.entries()]);
+// }
+// console.log('----for-loop----');
+// for (let i = 0; i < menu.length; i++) {
+//   console.log(`${i + 1}: ${menu[i]}`);
+// }
+
+// // Optional Chaining
+// if (restaurant.openingHours && restaurant.openingHours.mon)
+//   console.log(restaurant.openingHours.mon.open);
+
+// // with optional chaining ES2020
+// console.log(restaurant.openingHours.mon?.open);
+// console.log(restaurant.openingHours?.mon?.open);
+
+// // Example
+// const days = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// for (const day of days) {
+//   // console.log(day);
+//   const open = restaurant.openingHours[day]?.open ?? 'closed';
+//   console.log(`On ${day}, we open at ${open}`);
+// }
+
+// // Optional chaining on method
+// console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+// console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
+
+// // Optional chaining on arrays
+
+// const users = [{ name: 'jonas', email: 'hi@gmail.com' }];
+// // const users = [];
+
+// console.log(users[0]?.name ?? 'User array is empty');
+
+// // Looping objects - Object keys, value and entries
+
+// // properties Names
+// const properties = Object.keys(openingHours);
+// console.log(properties);
+
+// let openStr = `We are open on ${properties.length} days: `;
+
+// for (const day of properties) {
+//   openStr += `${day}, `;
+// }
+// console.log(openStr);
+
+// // Property values
+// const values = Object.values(openingHours);
+// console.log(values);
+
+// // Entire objects
+// const entries = Object.entries(openingHours);
+// console.log(entries);
+
+// for (const [key, { open, close }] of entries) {
+//   console.log(`On ${key} we open at ${open} and close at ${close}`);
+// }
