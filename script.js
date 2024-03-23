@@ -4,6 +4,23 @@
 // const flights =
 //   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+// Enhanced Object literals ES6
+const weekDays = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const openingHours = {
+  [weekDays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekDays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekDays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 // Data needed for first part of the section
 const restaurant = {
   name: 'Classico Italiano',
@@ -12,58 +29,42 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
-  order: function (starterIndex, mainIndex) {
+  // enhanced object literals
+  openingHours,
+
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
-  orderDelivery: function ({
-    starterIndex = 1,
-    mainIndex = 0,
-    time = '20:00',
-    address,
-  }) {
+  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
     console.log(
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
 
-  orderPasta: function (ing1, ing2, ing3) {
+  orderPasta(ing1, ing2, ing3) {
     console.log(
       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
     );
   },
 
-  orderPizza: function (mainIngredient, ...otherIngredients) {
+  orderPizza(mainIngredient, ...otherIngredients) {
     console.log(mainIngredient);
     console.log(otherIngredients);
   },
 };
 
-restaurant.orderDelivery({
-  time: '23:30',
-  address: 'Via del Sole, 21',
-  mainIndex: 2,
-  starterIndex: 2,
-});
+// restaurant.orderDelivery({
+//   time: '23:30',
+//   address: 'Via del Sole, 21',
+//   mainIndex: 2,
+//   starterIndex: 2,
+// });
 
-restaurant.orderDelivery({
-  address: 'Via del Sole, 21',
-  starterIndex: 2,
-});
+// restaurant.orderDelivery({
+//   address: 'Via del Sole, 21',
+//   starterIndex: 2,
+// });
 
 // // Destructuring Objects
 // const { name, openingHours, categories } = restaurant;
@@ -184,106 +185,106 @@ restaurant.orderDelivery({
 
 // REST PATTERN and PARAMETERS DESTRUCTURING
 
-const arr = [1, 2, ...[3, 4]]; // SPREAD, because on RIGHT side of the assignment operator =
+// const arr = [1, 2, ...[3, 4]]; // SPREAD, because on RIGHT side of the assignment operator =
 
-const [a, b, ...others] = [1, 2, 3, 4, 5]; // REST, because on LEFT side of the =
-console.log(a, b, others);
+// const [a, b, ...others] = [1, 2, 3, 4, 5]; // REST, because on LEFT side of the =
+// console.log(a, b, others);
 
-const [pizza, , risotto, focaccia, ...otherFood] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
-console.log(pizza, risotto, focaccia, otherFood);
+// const [pizza, , risotto, focaccia, ...otherFood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+// console.log(pizza, risotto, focaccia, otherFood);
 
 // REST OPERATOR IN OBJECT
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays);
+// const { sat, ...openingHours } = restaurant.openingHours;
+// console.log(openingHours);
 
 // USING REST OPERATORS IN FUNCTIONS
-const add = function (...numbers) {
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
-  console.log(sum);
-};
-add(2, 3);
-add(5, 3, 7, 2);
-add(8, 2, 4, 5, 6, 7, 8, 9);
+// const add = function (...numbers) {
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+//   console.log(sum);
+// };
+// add(2, 3);
+// add(5, 3, 7, 2);
+// add(8, 2, 4, 5, 6, 7, 8, 9);
 
-const x = [23, 5, 7];
-add(...x);
+// const x = [23, 5, 7];
+// add(...x);
 
-restaurant.orderPizza('mushrooms', 'onions', 'olives', 'spinach');
-restaurant.orderPizza('mushrooms');
+// restaurant.orderPizza('mushrooms', 'onions', 'olives', 'spinach');
+// restaurant.orderPizza('mushrooms');
 
 // SHORT CIRCUITING (&& AND ||)
 // The OR OPERATOR can use ANY data type, return ANY data type, and do short-circuiting
 
-console.log('----- OR -----');
+// console.log('----- OR -----');
 
-console.log(3 || 'jonas'); // returns 3 because it is the first truthy value and it's short-circuited
-console.log('' || 'jonas'); // returs jonas because it is a truthy value
-console.log(true || 0); // returs true because it is a truthy value
-console.log(undefined || null); // returns null  because all the operands are falsy values, it returns the last operands
-console.log(undefined || 0 || '' || 'Hello' || 23 || null); // returns Hello because it is the first truthy value
+// console.log(3 || 'jonas'); // returns 3 because it is the first truthy value and it's short-circuited
+// console.log('' || 'jonas'); // returs jonas because it is a truthy value
+// console.log(true || 0); // returs true because it is a truthy value
+// console.log(undefined || null); // returns null  because all the operands are falsy values, it returns the last operands
+// console.log(undefined || 0 || '' || 'Hello' || 23 || null); // returns Hello because it is the first truthy value
 
-restaurant.numGuests = 0;
+// restaurant.numGuests = 0;
 // const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
 // console.log(guests1);
 
-const guests2 = restaurant.numGuests || 10;
-console.log(guests2);
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
 
-// Nullish coalescing operator: Includes (Null , Undefined) and NOT (zero and "")
-const guestCorrect = restaurant.numGuests ?? 10;
-console.log(guestCorrect);
+// // Nullish coalescing operator: Includes (Null , Undefined) and NOT (zero and "")
+// const guestCorrect = restaurant.numGuests ?? 10;
+// console.log(guestCorrect);
 
-console.log('----- AND -----');
-// returns the first falsy value or the last values if all of them are truthy
+// console.log('----- AND -----');
+// // returns the first falsy value or the last values if all of them are truthy
 
-console.log(0 && 'jonas');
-console.log(7 && 'jonas');
-console.log('Hello' && 23 && null && 'jonas');
+// console.log(0 && 'jonas');
+// console.log(7 && 'jonas');
+// console.log('Hello' && 23 && null && 'jonas');
 
-// practical examples
-if (restaurant.orderPizza) {
-  restaurant.orderPizza('mushrooms', 'spinach');
-}
+// // practical examples
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach');
+// }
 
-restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
-// Logical Assignment Operators
+// // Logical Assignment Operators
 
-const rest1 = {
-  name: 'The Place',
-  // numGuests: 20,
-  numGuests: 0,
-};
+// const rest1 = {
+//   name: 'The Place',
+//   // numGuests: 20,
+//   numGuests: 0,
+// };
 
-const rest2 = {
-  name: 'Garden Chicken',
-  owner: 'Sodiq Rasak',
-};
+// const rest2 = {
+//   name: 'Garden Chicken',
+//   owner: 'Sodiq Rasak',
+// };
 
-// rest1.numGuests = rest1.numGuests || 10;
-// rest2.numGuests = rest2.numGuests || 10;
+// // rest1.numGuests = rest1.numGuests || 10;
+// // rest2.numGuests = rest2.numGuests || 10;
 
-// Logical OR assignment operator (||=)
-// rest1.numGuests ||= 10;
-// rest2.numGuests ||= 10;
+// // Logical OR assignment operator (||=)
+// // rest1.numGuests ||= 10;
+// // rest2.numGuests ||= 10;
 
-// Nullish assignment operator (??=)
-rest1.numGuests ??= 10;
-rest2.numGuests ??= 10;
+// // Nullish assignment operator (??=)
+// rest1.numGuests ??= 10;
+// rest2.numGuests ??= 10;
 
-// rest1.owner = rest1.owner && '<ANONYMOUS>';
-// rest2.owner = rest2.owner && '<ANONYMOUS>';
+// // rest1.owner = rest1.owner && '<ANONYMOUS>';
+// // rest2.owner = rest2.owner && '<ANONYMOUS>';
 
-// AND assignment operator
-rest1.owner &&= '<ANONYMOUS>';
-rest2.owner &&= '<ANONYMOUS>';
+// // AND assignment operator
+// rest1.owner &&= '<ANONYMOUS>';
+// rest2.owner &&= '<ANONYMOUS>';
 
-console.log(rest1);
-console.log(rest2);
+// console.log(rest1);
+// console.log(rest2);
 
 /*Data Structures, Modern Operators and Strings
 Coding Challenge #1
@@ -395,4 +396,57 @@ for (const [i, el] of menu.entries()) {
 console.log('----for-loop----');
 for (let i = 0; i < menu.length; i++) {
   console.log(`${i + 1}: ${menu[i]}`);
+}
+
+// Optional Chaining
+if (restaurant.openingHours && restaurant.openingHours.mon)
+  console.log(restaurant.openingHours.mon.open);
+
+// with optional chaining ES2020
+console.log(restaurant.openingHours.mon?.open);
+console.log(restaurant.openingHours?.mon?.open);
+
+// Example
+const days = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  // console.log(day);
+  const open = restaurant.openingHours[day]?.open ?? 'closed';
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+// Optional chaining on method
+console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
+
+// Optional chaining on arrays
+
+const users = [{ name: 'jonas', email: 'hi@gmail.com' }];
+// const users = [];
+
+console.log(users[0]?.name ?? 'User array is empty');
+
+// Looping objects - Object keys, value and entries
+
+// properties Names
+const properties = Object.keys(openingHours);
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+
+for (const day of properties) {
+  openStr += `${day}, `;
+}
+console.log(openStr);
+
+// Property values
+const values = Object.values(openingHours);
+console.log(values);
+
+// Entire objects
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
 }

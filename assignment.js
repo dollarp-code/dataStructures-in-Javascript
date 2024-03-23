@@ -414,61 +414,61 @@ const books = [
 // 6.1
 // There are objects in the books array that don't have the onlineContent property at all. Loop over the books array, and log a string to the console in this format: "${title}" provides no data about its online content.
 
-for (let i = 0; i < books.length; i++) {
-  books[i].onlineContent ??
-    console.log(`${books[i].title} provides no data about its online content`);
-}
+// for (let i = 0; i < books.length; i++) {
+//   books[i].onlineContent ??
+//     console.log(`${books[i].title} provides no data about its online content`);
+// }
 
-// Logical Assignments Operators
-// 7.1
-// Some of the book objects from the books array are missing the edition property. Loop over the books array, and assign this property with a number 1 (if it doesn't already exist). Use logical assignment operators.
+// // Logical Assignments Operators
+// // 7.1
+// // Some of the book objects from the books array are missing the edition property. Loop over the books array, and assign this property with a number 1 (if it doesn't already exist). Use logical assignment operators.
 
-for (let i = 0; i < books.length; i++) {
-  books[i].edition ||= 1;
-  console.log(books[i].edition);
-}
+// for (let i = 0; i < books.length; i++) {
+//   books[i].edition ||= 1;
+//   console.log(books[i].edition);
+// }
 
-// 7.2
-//Some of the book objects from the books array have the highlighted property, which by default is set to true. Iterate over the books array, and if the thirdParty.goodreads.rating property is less than 4.2, reassign it with false.
+// // 7.2
+// //Some of the book objects from the books array have the highlighted property, which by default is set to true. Iterate over the books array, and if the thirdParty.goodreads.rating property is less than 4.2, reassign it with false.
 
-// Use the &&= operator (tip: you may also need the ! operator)
+// // Use the &&= operator (tip: you may also need the ! operator)
 
-for (let i = 0; i < books.length; i++) {
-  books[i].highlighted &&= !(books[i].thirdParty.goodreads.rating < 4.2);
-  console.log(books[i].highlighted);
-}
+// for (let i = 0; i < books.length; i++) {
+//   books[i].highlighted &&= !(books[i].thirdParty.goodreads.rating < 4.2);
+//   console.log(books[i].highlighted);
+// }
 
-// Looping Arrays: The for-of Loop
-// 8.1
-// Use the for-of loop to loop over the books array and sum the pages of all books. Use the pageSum variable below, and the pages property of the book objects.
+// // Looping Arrays: The for-of Loop
+// // 8.1
+// // Use the for-of loop to loop over the books array and sum the pages of all books. Use the pageSum variable below, and the pages property of the book objects.
 
-let pageSum = 0;
-for (const book of books) {
-  pageSum += book.pages;
-  console.log(pageSum);
-}
+// let pageSum = 0;
+// for (const book of books) {
+//   pageSum += book.pages;
+//   console.log(pageSum);
+// }
 
-// 8.2
-// Below is the allAuthors variable which stores an empty array. Use the for-of loop to fill allAuthors with the authors of each book from the books array.
+// // 8.2
+// // Below is the allAuthors variable which stores an empty array. Use the for-of loop to fill allAuthors with the authors of each book from the books array.
 
-// Remember that each book object has the author property, which can be a string (if there is only a single author) or an array (if there are multiple authors). You may need to use the typeof operator. You can also use multiple loops if needed. The allAuthors array should have just one level (no nested arrays).
+// // Remember that each book object has the author property, which can be a string (if there is only a single author) or an array (if there are multiple authors). You may need to use the typeof operator. You can also use multiple loops if needed. The allAuthors array should have just one level (no nested arrays).
 
-const allAuthors = [];
-for (const book of books) {
-  if (typeof book.author === 'string') {
-    allAuthors.push(book.author);
-  } else {
-    for (const author of book.author) {
-      allAuthors.push(author);
-    }
-  }
-}
-console.log(allAuthors);
+// const allAuthors = [];
+// for (const book of books) {
+//   if (typeof book.author === 'string') {
+//     allAuthors.push(book.author);
+//   } else {
+//     for (const author of book.author) {
+//       allAuthors.push(author);
+//     }
+//   }
+// }
+// console.log(allAuthors);
 
-// 8.3
-// Use the for-of loop together with Array's entries() method to log each author from allAuthors to the console together with its index. Make the index start from 1, instead of 0.
+// // 8.3
+// // Use the for-of loop together with Array's entries() method to log each author from allAuthors to the console together with its index. Make the index start from 1, instead of 0.
 
-// for (const author of allAuthors) console.log(author);
-for (const [index, author] of allAuthors.entries()) {
-  console.log(`${index + 1}. ${author}`);
-}
+// // for (const author of allAuthors) console.log(author);
+// for (const [index, author] of allAuthors.entries()) {
+//   console.log(`${index + 1}. ${author}`);
+// }
