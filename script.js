@@ -500,3 +500,37 @@ console.log(scorers);
 // for (const [key, { open, close }] of entries) {
 //   console.log(`On ${key} we open at ${open} and close at ${close}`);
 // }
+
+// SETS
+
+const ordersSet = new Set([
+  'pasta',
+  'pasta',
+  'Rissoto',
+  'Rissoto',
+  'pizza',
+  'pizza',
+]);
+
+console.log(ordersSet);
+
+console.log(new Set('jonas'));
+
+// sets method
+console.log(ordersSet.size); // 3
+console.log(ordersSet.has('pizza')); // true
+console.log(ordersSet.has('beef')); // false
+console.log(ordersSet.add('Bread')); // add new item to the set
+console.log(ordersSet.delete('pizza')); // delete a value or an item from a set
+// console.log(ordersSet.clear()); // deletes the entire value from a set
+
+// Looping over a set
+for (const order of ordersSet) console.log(order);
+
+// example
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+console.log(new Set(staff).size);
+console.log(new Set('qudushussein').size);
