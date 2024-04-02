@@ -633,21 +633,58 @@ const gameEvents = new Map([
 
 // 1
 const events = [...new Set(gameEvents.values())];
-console.log(events);
+// console.log(events);
 
 // 2
 gameEvents.delete(64);
 // console.log(gameEvents);
 
 // 3
-console.log(`An event happened, on 
-average, every ${90 / gameEvents.size} minutes`);
+// console.log(`An event happened, on
+// average, every ${90 / gameEvents.size} minutes`);
 const time = [...gameEvents.keys()].pop();
-console.log(time);
-console.log(`An event happened, on 
-average, every ${time / gameEvents.size} minutes`);
+// console.log(time);
+// console.log(`An event happened, on
+// average, every ${time / gameEvents.size} minutes`);
 
 // 4
 for (const [min, event] of gameEvents) {
-  console.log(`[${min > 45 ? 'SECOND HALF' : 'FIRST HALF'}] ${min}: ${event}`);
+  // console.log(`[${min > 45 ? 'SECOND HALF' : 'FIRST HALF'}] ${min}: ${event}`);
 }
+
+// WORKING WITH STRINGS PART 1
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[3]);
+
+// string methods
+console.log(airline.length);
+console.log('B737'.length);
+
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('Portugal'));
+
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7));
+
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === 'E' || s === 'B') console.log('You got the middle seat');
+  else console.log('You got lucky');
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
